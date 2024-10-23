@@ -215,12 +215,11 @@ const QList<QString> &Session::System::Brightness::plugins() const
     return plugins;
 }
 
-Session::System::System(QSettings &settings, Arbiter &arbiter)
-    : clock()
-    , server(arbiter)
-    , bluetooth(arbiter)
-    , brightness(settings)
-    , volume(settings.value("System/volume", 50).toUInt())
+Session::System::System(QSettings &settings, Arbiter &arbiter):
+    clock(),
+    server(arbiter),
+    brightness(settings),
+    volume(settings.value("System/volume", 50).toUInt())
 {
     this->set_volume();
 }
