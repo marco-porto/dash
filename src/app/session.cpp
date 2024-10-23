@@ -107,16 +107,16 @@ Session::Layout::Fullscreen::Fullscreen(QSettings &settings, Arbiter &arbiter)
     this->curr_toggler = this->togglers_.value(settings.value("Layout/Fullscreen/toggler", 0).toInt());
 }
 
-Session::Layout::Layout(QSettings &settings, Arbiter &arbiter)
-    : scale(settings.value("Layout/scale", 1.0).toDouble())
-    , status_bar(settings.value("Layout/status_bar", false).toBool())
-    , control_bar(settings, arbiter)
-    , openauto_page(new OpenAutoPage(arbiter))
-    , curr_page(nullptr)
-    , fullscreen(settings, arbiter)
+Session::Layout::Layout(QSettings &settings, Arbiter &arbiter):
+    scale(settings.value("Layout/scale", 1.0).toDouble()),
+    status_bar(settings.value("Layout/status_bar", false).toBool()),
+    control_bar(settings, arbiter),
+    openauto_page(new OpenAutoPage(arbiter)),
+    curr_page(nullptr),
+    fullscreen(settings, arbiter),
 {
     this->pages_ = {
-        this->openauto_page
+        this->openauto_page,
         new CameraPage(arbiter),
         new LauncherPage(arbiter),
         new SettingsPage(arbiter)
@@ -484,14 +484,14 @@ QString Session::Core::parse_stylesheet(QString path) const
     return stream.readAll();
 }
 
-Session::Session(Arbiter &arbiter)
-    : settings_()
-    , theme_(settings_)
-    , layout_(settings_, arbiter)
-    , system_(settings_, arbiter)
-    , forge_(arbiter)
-    , core_(settings_, arbiter)
-    , android_auto_(arbiter)
+Session::Session(Arbiter &arbiter):
+    settings_(),
+    theme_(settings_),
+    layout_(settings_, arbiter),
+    system_(settings_, arbiter),
+    forge_(arbiter),
+    core_(settings_, arbiter),
+    android_auto_(arbiter)
 {
 }
 
