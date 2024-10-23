@@ -23,7 +23,6 @@
 #include "app/pages/page.hpp"
 #include "app/quick_views/quick_view.hpp"
 #include "app/services/clock.hpp"
-#include "app/services/server.hpp"
 #include "app/widgets/fullscreen_toggler.hpp"
 #include "AAHandler.hpp"
 
@@ -143,7 +142,6 @@ class Session {
         };
 
         Clock clock;
-        Server server;
         Brightness brightness;
         uint8_t volume;
 
