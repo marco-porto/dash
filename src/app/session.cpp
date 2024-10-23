@@ -113,7 +113,7 @@ Session::Layout::Layout(QSettings &settings, Arbiter &arbiter):
     control_bar(settings, arbiter),
     openauto_page(new OpenAutoPage(arbiter)),
     curr_page(nullptr),
-    fullscreen(settings, arbiter),
+    fullscreen(settings, arbiter)
 {
     this->pages_ = {
         this->openauto_page,
