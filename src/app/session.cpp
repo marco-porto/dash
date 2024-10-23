@@ -12,7 +12,6 @@
 #include <QTextStream>
 
 #include "app/arbiter.hpp"
-#include "app/pages/camera.hpp"
 #include "app/pages/launcher.hpp"
 #include "app/pages/settings.hpp"
 #include "app/quick_views/combo.hpp"
@@ -117,7 +116,6 @@ Session::Layout::Layout(QSettings &settings, Arbiter &arbiter):
 {
     this->pages_ = {
         this->openauto_page,
-        new CameraPage(arbiter),
         new LauncherPage(arbiter),
         new SettingsPage(arbiter)
     };
