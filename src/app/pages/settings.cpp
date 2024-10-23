@@ -199,24 +199,10 @@ QWidget *MainSettingsTab::controls_widget()
     auto minimize_button = new QPushButton("minimize");
     connect(minimize_button, &QPushButton::clicked, [this]{ this->arbiter.window()->setWindowState(Qt::WindowMinimized); });
     layout->addWidget(minimize_button);
+
     auto exit_button = new QPushButton("exit");
     connect(exit_button, &QPushButton::clicked, [this]{ qApp->exit(); });
     layout->addWidget(exit_button);
-    layout->addWidget(Session::Forge::br());
-    auto reboot_button = new QPushButton("reboot");
-    connect(reboot_button, &QPushButton::clicked, [this]{
-        this->arbiter.settings().sync();
-        sync();
-        system(Session::System::REBOOT_CMD);
-    });
-    layout->addWidget(reboot_button);
-    auto shut_down_button = new QPushButton("shut down");
-    connect(shut_down_button, &QPushButton::clicked, [this]{
-        this->arbiter.settings().sync();
-        sync();
-        system(Session::System::SHUTDOWN_CMD);
-    });
-    layout->addWidget(shut_down_button);
 
     return widget;
 }
