@@ -13,7 +13,6 @@
 
 #include "app/arbiter.hpp"
 #include "app/pages/camera.hpp"
-#include "app/pages/vehicle.hpp"
 #include "app/pages/launcher.hpp"
 #include "app/pages/settings.hpp"
 #include "app/quick_views/combo.hpp"
