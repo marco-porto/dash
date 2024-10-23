@@ -22,7 +22,6 @@
 #include "app/pages/openauto.hpp"
 #include "app/pages/page.hpp"
 #include "app/quick_views/quick_view.hpp"
-#include "app/services/clock.hpp"
 #include "app/widgets/fullscreen_toggler.hpp"
 #include "AAHandler.hpp"
 
@@ -89,7 +88,6 @@ class Session {
         };
 
         double scale;
-        bool status_bar;
         Fullscreen fullscreen;
         ControlBar control_bar;
         OpenAutoPage *openauto_page;
@@ -141,7 +139,6 @@ class Session {
             QList<PluginInfo> plugin_infos_;
         };
 
-        Clock clock;
         Brightness brightness;
         uint8_t volume;
 
