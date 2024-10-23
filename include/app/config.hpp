@@ -1,7 +1,6 @@
 #pragma once
 
 #include "openauto/Configuration/Configuration.hpp"
-#include "canbus/ICANBus.hpp"
 
 #include <QObject>
 #include <QSettings>
