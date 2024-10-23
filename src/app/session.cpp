@@ -13,7 +13,6 @@
 
 #include "app/arbiter.hpp"
 #include "app/pages/settings.hpp"
-#include "app/quick_views/combo.hpp"
 #include "app/utilities/icon_engine.hpp"
 #include "plugins/brightness_plugin.hpp"
 #include "aasdk_proto/ButtonCodeEnum.pb.h"
@@ -79,16 +78,7 @@ QPalette Session::Theme::palette() const
 
 Session::Layout::ControlBar::ControlBar(QSettings &settings, Arbiter &arbiter)
     : enabled(settings.value("Layout/ControlBar/enabled", true).toBool())
-    , curr_quick_view(nullptr)
 {
-    this->quick_views_ = {
-        new NullQuickView(arbiter),
-        new VolumeQuickView(arbiter),
-        new BrightnessQuickView(arbiter),
-        new ComboQuickView(arbiter)
-    };
-
-    this->curr_quick_view = this->quick_views_.value(settings.value("Layout/ControlBar/quick_view", 0).toInt());
 }
 
 Session::Layout::Fullscreen::Fullscreen(QSettings &settings, Arbiter &arbiter)

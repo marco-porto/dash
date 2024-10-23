@@ -2,7 +2,6 @@
 #include <QLocale>
 #include <QPushButton>
 
-#include "app/quick_views/quick_view.hpp"
 #include "app/utilities/icon_engine.hpp"
 #include "app/widgets/dialog.hpp"
 
@@ -104,19 +103,6 @@ QWidget *Dash::control_bar() const
     auto layout = new QHBoxLayout(widget);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
-
-    auto quick_views = new QStackedLayout();
-    quick_views->setContentsMargins(0, 0, 0, 0);
-    layout->addLayout(quick_views);
-    for (auto quick_view : this->arbiter.layout().control_bar.quick_views()) {
-        quick_views->addWidget(quick_view->widget());
-        quick_view->init();
-    }
-    quick_views->setCurrentWidget(this->arbiter.layout().control_bar.curr_quick_view->widget());
-    connect(&this->arbiter, &Arbiter::curr_quick_view_changed, [quick_views](QuickView *quick_view){
-        quick_views->setCurrentWidget(quick_view->widget());
-    });
-
     layout->addStretch();
 
     auto dialog = new Dialog(this->arbiter, true, this->arbiter.window());

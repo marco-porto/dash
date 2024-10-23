@@ -238,21 +238,9 @@ QWidget *LayoutSettingsTab::settings_widget()
     QWidget *widget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(widget);
 
-    layout->addWidget(this->pages_widget());
-    layout->addWidget(Session::Forge::br(), 1);
     layout->addWidget(this->fullscreen_widget(), 1);
     layout->addWidget(this->fullscreen_on_start_widget(), 1);
-    layout->addWidget(Session::Forge::br(), 1);
     layout->addWidget(this->control_bar_widget(), 1);
-
-    QWidget *controls_bar_row = this->quick_view_row_widget();
-    controls_bar_row->setVisible(this->arbiter.layout().control_bar.enabled);
-    connect(&this->arbiter, &Arbiter::control_bar_changed, [controls_bar_row](bool enabled){
-        controls_bar_row->setVisible(enabled);
-    });
-    layout->addWidget(controls_bar_row, 1);
-
-    layout->addWidget(Session::Forge::br(), 1);
     layout->addWidget(this->scale_row_widget(), 1);
 
     QScrollArea *scroll_area = new QScrollArea(this);
@@ -261,38 +249,6 @@ QWidget *LayoutSettingsTab::settings_widget()
     scroll_area->setWidget(widget);
 
     return scroll_area;
-}
-
-QWidget *LayoutSettingsTab::pages_widget()
-{
-    QWidget *widget = new QWidget(this);
-    QHBoxLayout *layout = new QHBoxLayout(widget);
-
-    QLabel *label = new QLabel("Pages", widget);
-    layout->addWidget(label, 1);
-
-    QGroupBox *group = new QGroupBox(widget);
-    QVBoxLayout *group_layout = new QVBoxLayout(group);
-
-    for (auto page : this->arbiter.layout().pages()) {
-        if (page->toggleale()) {
-            QCheckBox *button = new QCheckBox(page->name(), group);
-            button->setChecked(page->enabled());
-            connect(button, &QCheckBox::toggled, [this, page](bool checked){
-                this->arbiter.set_page(page, checked);
-            });
-            group_layout->addWidget(button);
-        }
-    }
-    connect(&this->arbiter, &Arbiter::page_changed, [this, group_layout](Page *page, bool enabled){
-        auto item = group_layout->itemAt(this->arbiter.layout().page_id(page));
-        if (auto button = qobject_cast<QCheckBox *>(item->widget()))
-            button->setChecked(enabled);
-    });
-
-    layout->addWidget(group, 1, Qt::AlignHCenter);
-
-    return widget;
 }
 
 QWidget *LayoutSettingsTab::fullscreen_widget()
@@ -345,26 +301,6 @@ QWidget *LayoutSettingsTab::control_bar_widget()
     toggle->setChecked(this->arbiter.layout().control_bar.enabled);
     connect(toggle, &Switch::stateChanged, [this](bool state){ this->arbiter.set_control_bar(state); });
     layout->addWidget(toggle, 1, Qt::AlignHCenter);
-
-    return widget;
-}
-
-QWidget *LayoutSettingsTab::quick_view_row_widget()
-{
-    QWidget *widget = new QWidget(this);
-    QHBoxLayout *layout = new QHBoxLayout(widget);
-
-    QLabel *label = new QLabel("Quick View", widget);
-    layout->addWidget(label, 1);
-
-    QStringList quick_views;
-    for (auto quick_view : this->arbiter.layout().control_bar.quick_views())
-        quick_views.append(quick_view->name());
-    Selector *selector = new Selector(quick_views, this->arbiter.layout().control_bar.curr_quick_view->name(), this->arbiter.forge().font(14), this->arbiter, widget);
-    connect(selector, &Selector::idx_changed, [this](int idx){
-        this->arbiter.set_curr_quick_view(idx);
-    });
-    layout->addWidget(selector, 1);
 
     return widget;
 }

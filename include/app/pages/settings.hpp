@@ -35,7 +35,6 @@ class MainSettingsTab : public QWidget {
     QWidget *color_select_widget();
     QWidget *cursor_row_widget();
     QWidget *volume_row_widget();
-    QWidget *controls_row_widget();
     QWidget *controls_widget();
 
     Arbiter &arbiter;
@@ -50,11 +49,9 @@ class LayoutSettingsTab : public QWidget {
 
    private:
     QWidget *settings_widget();
-    QWidget *pages_widget();
     QWidget *fullscreen_widget();
     QWidget *fullscreen_on_start_widget();
     QWidget *control_bar_widget();
-    QWidget *quick_view_row_widget();
     QWidget *scale_row_widget();
     QWidget *scale_widget();
 

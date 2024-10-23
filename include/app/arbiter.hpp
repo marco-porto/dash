@@ -9,7 +9,6 @@
 #include "app/action.hpp"
 #include "app/session.hpp"
 #include "app/pages/page.hpp"
-#include "app/quick_views/quick_view.hpp"
 #include "app/widgets/fullscreen_toggler.hpp"
 #include "openauto/Service/InputService.hpp"
 
@@ -25,8 +24,6 @@ class Arbiter : public QObject {
     void set_color(const QColor &color);
     void set_scale(double scale);
     void set_control_bar(bool enabled);
-    void set_curr_quick_view(QuickView *quick_view);
-    void set_curr_quick_view(int id);
     void set_curr_page(Page *page);
     void set_curr_page(int id);
     void set_page(Page *page, bool enabled);
@@ -64,7 +61,6 @@ class Arbiter : public QObject {
     void color_changed(QColor color);
     void scale_changed(float scale);
     void control_bar_changed(bool enabled);
-    void curr_quick_view_changed(QuickView *quick_view);
     void curr_page_changed(Page *page);
     void page_changed(Page *page, bool enabled);
     void fullscreen_changed(bool fullscreen);

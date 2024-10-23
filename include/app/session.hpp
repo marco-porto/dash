@@ -21,7 +21,6 @@
 #include "app/action.hpp"
 #include "app/pages/openauto.hpp"
 #include "app/pages/page.hpp"
-#include "app/quick_views/quick_view.hpp"
 #include "app/widgets/fullscreen_toggler.hpp"
 #include "AAHandler.hpp"
 
@@ -60,16 +59,8 @@ class Session {
     struct Layout {
         struct ControlBar {
             bool enabled;
-            QuickView *curr_quick_view;
 
             ControlBar(QSettings &settings, Arbiter &arbiter);
-
-            const QList<QuickView *> &quick_views() const { return this->quick_views_; }
-            QuickView *quick_view(int id) const { return this->quick_views_.value(id, nullptr); }
-            int quick_view_id(QuickView *quick_view) const { return this->quick_views_.indexOf(quick_view); }
-
-           private:
-            QList<QuickView *> quick_views_;
         };
 
         struct Fullscreen {
