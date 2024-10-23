@@ -26,6 +26,13 @@ class Config : public QObject {
     Config();
 
 
+    inline bool get_show_aa_connected() { return this->show_aa_connected; }
+    inline void set_show_aa_connected(bool enabled)
+    {
+        this->show_aa_connected = enabled;
+        this->settings.setValue("Pages/OpenAuto/show_aa_connected", this->show_aa_connected);
+    }
+
     inline const QStringList &get_launcher_plugins() { return this->launcher_plugins; }
     inline void set_launcher_plugin(QString plugin, bool remove = false)
     {
