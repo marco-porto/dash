@@ -117,8 +117,7 @@ Session::Layout::Layout(QSettings &settings, Arbiter &arbiter)
     , fullscreen(settings, arbiter)
 {
     this->pages_ = {
-        this->openauto_page,
-        new VehiclePage(arbiter),
+        this->openauto_page
         new CameraPage(arbiter),
         new LauncherPage(arbiter),
         new SettingsPage(arbiter)
