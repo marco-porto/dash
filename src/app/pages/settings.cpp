@@ -32,7 +32,6 @@ void SettingsPage::init()
 {
     this->addTab(new MainSettingsTab(this->arbiter), "Main");
     this->addTab(new LayoutSettingsTab(this->arbiter), "Layout");
-    this->addTab(new BluetoothSettingsTab(this->arbiter, this), "Bluetooth");
     this->addTab(new ActionsSettingsTab(this->arbiter), "Actions");
 }
 
