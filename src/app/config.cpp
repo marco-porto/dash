@@ -10,10 +10,6 @@ Config::Config()
       settings()
 {
     this->show_aa_connected = this->settings.value("Pages/OpenAuto/show_aa_connected", 100).toBool();
-    this->settings.beginGroup("Pages/Launcher");
-    for (auto key : this->settings.childKeys())
-        this->launcher_plugins.append(this->settings.value(key, QString()).toString());
-    this->settings.endGroup();
 }
 
 Config *Config::get_instance()
