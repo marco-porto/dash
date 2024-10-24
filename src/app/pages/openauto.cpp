@@ -89,21 +89,16 @@ QLayout *OpenAutoPage::Settings::settings_widget()
     QVBoxLayout *layout = new QVBoxLayout();
 
     layout->addLayout(this->rhd_row_widget(), 1);
-    layout->addWidget(Session::Forge::br(), 1);
     layout->addLayout(this->frame_rate_row_widget(), 1);
     layout->addLayout(this->resolution_row_widget(), 1);
     layout->addLayout(this->dpi_row_widget(), 1);
-    layout->addWidget(Session::Forge::br(), 1);
     layout->addLayout(this->rt_audio_row_widget(), 1);
     layout->addLayout(this->audio_channels_row_widget(), 1);
-    layout->addWidget(Session::Forge::br(), 1);
     layout->addLayout(this->bluetooth_row_widget(), 1);
     layout->addLayout(this->autoconnect_row_widget(), 1);
-    layout->addWidget(Session::Forge::br(), 1);
     layout->addLayout(this->connected_indicator_widget(), 1);
-    layout->addWidget(Session::Forge::br(), 1);
     layout->addLayout(this->touchscreen_row_widget(), 1);
-    // layout->addLayout(this->buttons_row_widget(), 1);
+    layout->addLayout(this->buttons_row_widget(), 1);
 
     return layout;
 }
