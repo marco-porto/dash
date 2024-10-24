@@ -31,8 +31,6 @@ class MainSettingsTab : public QWidget {
     QWidget *brightness_plugin_row_widget();
     QWidget *brightness_row_widget();
     QWidget *brightness_widget();
-    QWidget *color_row_widget();
-    QWidget *color_select_widget();
     QWidget *cursor_row_widget();
     QWidget *volume_row_widget();
     QWidget *controls_widget();

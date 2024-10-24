@@ -17,7 +17,6 @@
 #include "app/session.hpp"
 #include "app/window.hpp"
 #include "app/pages/settings.hpp"
-#include "app/widgets/color_picker.hpp"
 #include "app/widgets/selector.hpp"
 #include "app/widgets/switch.hpp"
 
@@ -52,7 +51,6 @@ QWidget *MainSettingsTab::settings_widget()
     QVBoxLayout *layout = new QVBoxLayout(widget);
 
     layout->addWidget(this->dark_mode_row_widget(), 1);
-    layout->addWidget(this->color_row_widget(), 1);
     layout->addWidget(this->cursor_row_widget(), 1);
     layout->addWidget(this->volume_row_widget(), 1);
     layout->addWidget(this->brightness_row_widget(), 1);
@@ -114,34 +112,6 @@ QWidget *MainSettingsTab::brightness_widget()
 
     layout->addWidget(selector);
     layout->addWidget(this->arbiter.forge().brightness_slider());
-
-    return widget;
-}
-
-QWidget *MainSettingsTab::color_row_widget()
-{
-    QWidget *widget = new QWidget(this);
-    QHBoxLayout *layout = new QHBoxLayout(widget);
-
-    QLabel *label = new QLabel("Color", widget);
-    layout->addWidget(label, 1);
-
-    layout->addWidget(this->color_select_widget(), 1);
-
-    return widget;
-}
-
-QWidget *MainSettingsTab::color_select_widget()
-{
-    QWidget *widget = new QWidget(this);
-    QHBoxLayout *layout = new QHBoxLayout(widget);
-
-    ColorPicker *label = new ColorPicker(this->arbiter, 16, this->arbiter.forge().font(14), widget);
-    label->update(this->arbiter.theme().color());
-    connect(label, &ColorPicker::color_changed, [this](QColor color){ this->arbiter.set_color(color); });
-    connect(&this->arbiter, &Arbiter::color_changed, [label](QColor color){ label->update(color); });
-
-    layout->addWidget(label);
 
     return widget;
 }
